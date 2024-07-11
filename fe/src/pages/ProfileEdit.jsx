@@ -51,9 +51,12 @@ const ProfileEdit = () => {
     (async () => {
       const {
         data: { data }
-      } = await axios.get("http://localhost:8080/api/v1/users", {
-        headers: { Authorization: `Bearer ${accessToken}` }
-      });
+      } = await axios.get(
+        "https://align-mern-app-api.vercel.app/api/v1/users",
+        {
+          headers: { Authorization: `Bearer ${accessToken}` }
+        }
+      );
       setProfileToEdit(
         data || {
           firstName: "",
@@ -129,7 +132,7 @@ const ProfileEdit = () => {
           profileDataEdited.append("user-image", imageFile);
         }
         const editedProfile = await axios.put(
-          "http://localhost:8080/api/v1/users",
+          "https://align-mern-app-api.vercel.app/api/v1/users",
           profileDataEdited,
           {
             headers: { Authorization: `Bearer ${accessToken}` }
@@ -138,10 +141,13 @@ const ProfileEdit = () => {
         localStorage.removeItem("user");
         const {
           data: { data }
-        } = await axios.post("http://localhost:8080/api/v1/users/login", {
-          email: profileToEdit.email,
-          password: profileToEdit.password
-        });
+        } = await axios.post(
+          "https://align-mern-app-api.vercel.app/api/v1/users/login",
+          {
+            email: profileToEdit.email,
+            password: profileToEdit.password
+          }
+        );
 
         localStorage.setItem("user", JSON.stringify(data));
         setUser(data);

@@ -12,7 +12,9 @@ const YourEventsDetails = () => {
       try {
         const {
           data: { data }
-        } = await axios.get(`http://localhost:8080/api/v1/events/${id}`);
+        } = await axios.get(
+          `https://align-mern-app-api.vercel.app/api/v1/events/${id}`
+        );
         setEvent(data);
       } catch (error) {
         console.error(error.message);
@@ -50,9 +52,10 @@ const YourEventsDetails = () => {
         </ul>
       </div>
       <div className="flex flex-row justify-center gap-10">
-        <button 
-          className="signup-button bg-black text-secondary font-bold text-2xl py-2 px-20" 
-          onClick={() => navigate(`/your-events/`)}>
+        <button
+          className="signup-button bg-black text-secondary font-bold text-2xl py-2 px-20"
+          onClick={() => navigate(`/your-events/`)}
+        >
           Back
         </button>
         <button

@@ -13,18 +13,20 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/v1/events");
-        const events = response.data.data.filter(event => !event.deleted);
-  
+        const response = await axios.get(
+          "https://align-mern-app-api.vercel.app/api/v1/events"
+        );
+        const events = response.data.data.filter((event) => !event.deleted);
+
         localStorage.setItem("events", JSON.stringify(events));
         dispatch({ type: "EVENT_LIST", payload: events });
       } catch (error) {
         console.error("Error fetching events", error);
       }
     };
-  
+
     fetchEvents();
-  }, []);  
+  }, []);
 
   const handleEvent = () => {
     if (state.events.length > 0) {

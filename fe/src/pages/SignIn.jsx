@@ -46,10 +46,13 @@ const SignIn = () => {
       ) {
         const {
           data: { data }
-        } = await axios.post("http://localhost:8080/api/v1/users/login", {
-          email,
-          password
-        });
+        } = await axios.post(
+          "https://align-mern-app-api.vercel.app/api/v1/users/login",
+          {
+            email,
+            password
+          }
+        );
         localStorage.setItem("user", JSON.stringify(data));
         setUser(data);
         setInvalidLogin("");
@@ -77,11 +80,7 @@ const SignIn = () => {
 
   return (
     <div className="signup-container flex justify-center items-center mt-20">
-      <img
-        className="align-auto mt-8"
-        src={logo}
-        alt="align-logo"
-      />
+      <img className="align-auto mt-8" src={logo} alt="align-logo" />
       <main className="signup-main">
         <form onSubmit={handleSubmit} className="">
           <div className="">

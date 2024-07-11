@@ -19,7 +19,9 @@ const YourEventsEdit = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/v1/events/${id}`);
+        const response = await axios.get(
+          `https://align-mern-app-api.vercel.app/api/v1/events/${id}`
+        );
         const eventData = response.data.data;
         setEvent({
           title: eventData.title,
@@ -61,13 +63,17 @@ const YourEventsEdit = () => {
     formData.append("time", event.time);
 
     try {
-        await axios.put(`http://localhost:8080/api/v1/events/${id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data"
+      await axios.put(
+        `https://align-mern-app-api.vercel.app/api/v1/events/${id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
         }
-      });
+      );
 
-      navigate(`/your-events/${id}`); 
+      navigate(`/your-events/${id}`);
     } catch (error) {
       console.error("Error updating event", error);
     }
@@ -76,7 +82,11 @@ const YourEventsEdit = () => {
   return (
     <div className="container">
       <h1 className="text-center text-3xl font-bold my-5">Edit Event</h1>
-      <form onSubmit={handleSubmit} encType="multipart/form-data" className="mx-60 my-10">
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className="mx-60 my-10"
+      >
         <div className="flex flex-col mb-4">
           <label htmlFor="title" className="mb-2 font-bold">
             Title
@@ -203,6 +213,6 @@ const YourEventsEdit = () => {
       </form>
     </div>
   );
-}
+};
 
 export default YourEventsEdit;

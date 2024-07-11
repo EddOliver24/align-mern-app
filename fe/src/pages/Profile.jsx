@@ -14,9 +14,12 @@ const Profile = () => {
     (async () => {
       const {
         data: { data }
-      } = await axios.get("http://localhost:8080/api/v1/users", {
-        headers: { Authorization: `Bearer ${accessToken}` }
-      });
+      } = await axios.get(
+        "https://align-mern-app-api.vercel.app/api/v1/users",
+        {
+          headers: { Authorization: `Bearer ${accessToken}` }
+        }
+      );
       setProfile(data);
     })();
   }, []);

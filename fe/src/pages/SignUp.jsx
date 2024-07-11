@@ -88,19 +88,25 @@ const SignUp = () => {
         user.password.match(passwordRegex) !== null &&
         confirmPassword === user.password
       ) {
-        await axios.post("http://localhost:8080/api/v1/users/register", {
-          firstName: user.firstName,
-          lastName: user.lastName,
-          location: user.location,
-          email: user.email,
-          password: user.password
-        });
+        await axios.post(
+          "https://align-mern-app-api.vercel.app/api/v1/users/register",
+          {
+            firstName: user.firstName,
+            lastName: user.lastName,
+            location: user.location,
+            email: user.email,
+            password: user.password
+          }
+        );
         const {
           data: { data }
-        } = await axios.post("http://localhost:8080/api/v1/users/login", {
-          email: user.email,
-          password: user.password
-        });
+        } = await axios.post(
+          "https://align-mern-app-api.vercel.app/api/v1/users/login",
+          {
+            email: user.email,
+            password: user.password
+          }
+        );
 
         localStorage.setItem("user", JSON.stringify(data));
         setInvalidSignUp("");

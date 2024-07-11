@@ -14,7 +14,9 @@ const EventDetail = () => {
       try {
         const {
           data: { data }
-        } = await axios.get(`http://localhost:8080/api/v1/events/${eventId}`);
+        } = await axios.get(
+          `https://align-mern-app-api.vercel.app/api/v1/events/${eventId}`
+        );
         setEvent(data);
       } catch (error) {
         console.error(error.message);
@@ -35,7 +37,7 @@ const EventDetail = () => {
 
           try {
             await axios.put(
-              `http://localhost:8080/api/v1/events/${eventId}`,
+              `https://align-mern-app-api.vercel.app/api/v1/events/${eventId}`,
               updatedEvent.toString()
             );
           } catch (error) {
@@ -59,7 +61,7 @@ const EventDetail = () => {
         <img
           src={event.image?.path}
           alt={event.title}
-          className="w-3/6 object-contain object-contain"
+          className="w-3/6 object-contain"
         />
       </div>
       <div className="flex flex-row justify-center">
